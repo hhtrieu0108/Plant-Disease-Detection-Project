@@ -1,4 +1,10 @@
-flask 
-tensorflow 
-pillow 
+flask
+scikit-learn
 numpy
+pandas
+tensorflow
+torch
+numpy
+pandas
+matplotlib
+seaborn

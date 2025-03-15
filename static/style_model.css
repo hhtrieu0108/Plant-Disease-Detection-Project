@@ -1,0 +1,160 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: white;
+    margin: 0;
+    padding: 20px;
+}
+
+
+
+h1 {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 30px;
+    background-color: rgb(248, 247, 252);
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    color: #0bac08ef;
+}
+
+.button-container {
+    margin: 20px 0;
+}
+
+.model-button {
+    display: inline-block;
+    margin: 10px;
+    padding: 15px 25px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.model-button:hover {
+    background-color: #45a049;
+}
+
+input[type="file"] {
+    margin: 10px 0;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #008CBA;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #007bb5;
+}
+
+img {
+    max-width: 400px;
+    margin: 20px 0;
+}
+
+.user-manual {
+    max-width: 700px;
+    margin: 20px auto;  /* sửa vị trí bảng*/
+    padding: 20px;
+    background-color: rgb(249, 241, 241);
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    float: center;
+}
+
+.user-manual h2 {
+    text-align: center;
+    color: #4CAF50;
+    margin-bottom: 20px;
+}
+
+.user-manual table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    
+}
+
+.user-manual th, .user-manual td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+
+
+.user-manual th {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+.user-manual tr:nth-child(even) {
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.user-manual tr:hover {
+    background-color: #73f060;
+    transition: background-color 0.3s;
+}
+
+.image-gallery {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.selectable-image {
+    width: 150px; /* Kích thước hình ảnh */
+    height: auto; /* Giữ tỷ lệ khung hình */
+    margin: 10px;
+    cursor: pointer; /* Hiển thị con trỏ chuột khi di chuột qua hình ảnh */
+    border: 2px solid transparent; /* Đường viền mặc định */
+    transition: border-color 0.3s;
+}
+
+.selectable-image:hover {
+    border-color: #4CAF50; /* Đổi màu đường viền khi di chuột qua */
+}
+
+.back-button-container {
+    margin-top: 20px; /* Khoảng cách phía trên */
+    text-align: center; /* Căn giữa nút */
+}
+
+.back-button {
+    padding: 10px 20px; /* Padding cho nút */
+    background-color: #008CBA; /* Màu nền */
+    color: white; /* Màu chữ */
+    text-decoration: none; /* Bỏ gạch chân */
+    border-radius: 5px; /* Bo tròn các góc */
+    transition: background-color 0.3s; /* Hiệu ứng chuyển màu */
+    font-size: 16px; /* Kích thước chữ */
+}
+
+.back-button:hover {
+    background-color: #007bb5; /* Màu nền khi di chuột qua */
+}
+
+pre {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 16px;
+    white-space: pre-wrap; /* Keeps text formatting */
+    word-wrap: break-word;
+}

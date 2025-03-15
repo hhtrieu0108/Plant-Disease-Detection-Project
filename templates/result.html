@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detection Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_result.css') }}">
+</head>
+<body>
+    <h1>Prediction Result</h1>
+    <div class="result-container" style="text-align: center; justify-content: center;">
+        <table style="margin: auto;">
+            <thead>
+                <tr>
+                    <th>Prediction</th>
+                    <th>Readable Label</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="Prediction">{{ result }}</td>
+                    <td class="Readable Label">{{ label_name }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {% if selected_image %}
+        <h2>Selected Image:</h2>
+        <img src="{{ url_for('static', filename='images/' + model_name + '/' + selected_image) }}" alt="Selected Image">
+    {% endif %}
+
+    <!-- Hiển thị hình ảnh đã tải lên -->
+    {% if filename %}
+        <h2>Uploaded Image:</h2>
+        <img src="{{ url_for('uploaded_file', filename=filename) }}" alt="Uploaded Image" style="max-width: 100%; height: auto;">
+    {% endif %}
+    <br>
+    <div class="back-button-container">
+        <a href="{{ url_for('home') }}" class="back-button">Back to Home</a>
+    </div>
+</body>
+</html>

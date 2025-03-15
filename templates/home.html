@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Plants Diseases Detection Computer Vision Project</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_home.css') }}">
+</head>
+
+<body class="body">
+    <h1>PLANTS DISEASES CLASSIFICATION COMPUTER VISION PROJECT </h1>
+    <div class="button-container">
+        {% for model in ['LeafPDCMD', 'FIELDPLANT', 'XMG4R', 'PLANTDOC', 'FIELDPLANTVILLAGE'] %}
+            <a href="{{ url_for('model_page', model_name=model) }}" class="model-button">{{ model }}</a>
+        {% endfor %}
+    </div>
+
+    <!-- User Manual Section -->
+    <div class="user-manual" style="text-align: center; justify-content: center;">
+        <h2>User Manual</h2>
+        <table style="margin: auto;">
+            <thead>
+                <tr>
+                    <th>Step</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="step">1</td>
+                    <td class="description">Select a model from the options above.</td>
+                </tr>
+                <tr>
+                    <td class="step">2</td>
+                    <td class="description">Upload or choose available image of the plant leaf.</td>
+                </tr>
+                <tr>
+                    <td class="step">3</td>
+                    <td class="description">Click on the "Predict" button to get the prediction.</td>
+                </tr>
+                <tr>
+                    <td class="step">4</td>
+                    <td class="description">View the results displayed on the next page.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ model_name }} Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_model.css') }}">
+</head>
+<body>
+    <h1>{{ model_name }} Detection</h1>
+    <div class="model-description", style="font-weight: bold;">
+        <h2>Dataset Overview</h2>
+        <pre>{{description}}</pre>
+    </div>
+    <!-- User Manual Section -->
+    <div class="user-manual" style="text-align: left; justify-content: left;">
+        <h2>User Manual</h2>
+        <table style="margin: auto;">
+            <thead>
+                <tr>
+                    <th>Step</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="step">1</td>
+                    <td class="description">Choose an image from the available options or upload your own image.</td>
+                </tr>
+                <tr>
+                    <td class="step">2</td>
+                    <td class="description">Press "Predict" button.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Section to display available images -->
+    <div class="image-selection">
+        <h2>Select an Image</h2>
+        <div class="image-gallery">
+            {% for image in available_images %}
+                <img src="{{ url_for('static', filename='images/' + model_name + '/' + image) }}" 
+                     alt="{{ image }}" 
+                     class="selectable-image" 
+                     onclick="selectImage('{{ image }}')">
+            {% endfor %}
+        </div>
+        <p>Selected Image: <span id="selected-image-name">None</span></p>
+    </div>
+
+    <form action="" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="selected_image" id="selected_image"> <!-- Hidden field to send the selected image -->
+
+        <label for="file">Or choose an image to upload:</label>
+        <input type="file" name="file" id="file"> <!-- Upload file -->
+
+        <button type="submit">Predict</button> <!-- Prediction button -->
+    </form>
+
+    <!-- Back button to home -->
+    <div class="back-button-container">
+        <a href="{{ url_for('home') }}" class="back-button">Back to Home</a>
+    </div>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <script>
+        function selectImage(imageName) {
+            document.getElementById('selected-image-name').innerText = imageName;
+            document.getElementById('selected_image').value = imageName; // Update hidden field
+        }
+    </script>
+</body>
+</html>
