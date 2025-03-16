@@ -1,106 +1,85 @@
 # Plant Diseases Detection
 
-# Cloud Virtual Machine Setup and Configuration
+## Overview
+This project provides a web interface for `Plant Diseases Detection` using Flask. It includes backend processing for model loading, image preprocessing, and predictions. The system also allows users to upload images for training and prediction.
 
-## 1. Create a Virtual Machine (VM)
+## Project Structure
 
-### 1.1 Select VM Configuration
-- **Resource Group**: Choose an appropriate resource group.
-- **VM Name**: Define a suitable name for the virtual machine.
-- **Region**: Select `UK-South` (chosen due to student subscription availability).
-- **Availability Zone**: Choose `Zone 1` (sufficient for a simple VM).
-- **Image**: Select `Debian` (lightweight operating system).
-- **Size**: Choose `Standard_D2s_v3` for minimal cost (suitable for small-scale usage).
-- **Authentication Method**: Use `password` for ease of access.
-- **Inbound Ports**: Configure ports for public access.
-- **OS Disk**: Default size of `30GB` (adjust based on requirements).
-- **Networking**: Use the default subnet and network settings.
+### Backend (`web.py`)
+The backend handles model management, image processing, and user interactions.
 
-### 1.2 Create the VM
-After selecting the above configurations, proceed with the VM creation.
+- **`load_model()`**: Loads the trained `.h5` model file.
+- **`preprocessing_image()`**: Scales images to the required dimensions (224x224 or 256x256) for model input.
+- **`get_model_description()`**: Provides descriptions for different datasets to help users understand the chosen dataset.
+- **`model_page()`**: Manages image selection or user-uploaded images for model prediction.
+- **`selected_file()`** and **`upload_file()`**: Handle image display on the webpage.
 
----
+### Frontend
+- **`Home.html`**: The main page containing usage instructions and selection options for the trained models.
+- **`Model.html`**: Displays the selected model and allows users to upload images for prediction.
+- **`Result.html`**: Shows prediction results after processing an image.
 
-## 2. Connect to the Virtual Machine
+## Cloud Deployment
+### 1. Create a Virtual Machine (VM)
+1. **Resource Group**: Select the appropriate resource group.
+2. **VM Name**: Choose a name for the virtual machine.
+3. **Region**: Select `UK-South` (Student subscription available).
+4. **Zone**: Choose Zone 1 (Single-zone deployment for simplicity).
+5. **Image**: Use Debian (lightweight Linux distribution).
+6. **Size**: Select `Standard_D2s_v3` (cost-efficient for small-scale applications).
+7. **Authentication**: Use password authentication for ease of access.
+8. **Network Configuration**:
+   - Enable inbound public access.
+   - Default OS disk size: 30GB.
+   - Default subnet and network settings.
+9. **Deploy**: Finalize and create the VM.
 
-### 2.1 Access the VM
-- Navigate to the **Azure Portal**.
-- Open the **Virtual Machine Resource**.
-- Click on **Connect**.
-- Select **SSH using Azure CLI** (recommended for web browser access).
-- Click **Configure + Connect**, then initiate the connection.
+### 2. Connect to the Virtual Machine
+1. Navigate to the VM resource in Azure.
+2. Click `Connect` and choose SSH.
+3. Use Azure CLI for browser-based SSH access.
+4. Connect via CLI:
+   ```sh
+   ssh username@<public-ip>
+   ```
+   Example:
+   ```sh
+   ssh dat-fptu@20.90.90.19
+   ```
 
-### 2.2 Establish SSH Connection
-Execute the following command in the Azure Cloud Shell or local terminal:
-```sh
-ssh <username>@<public-ip>
-```
-Example:
-```sh
-ssh dat-fptu@20.90.90.19
-```
+### 3. Set Up the Environment
+1. **Ensure Python is installed** (pre-installed on Debian).
+2. **Install Git**:
+   ```sh
+   sudo apt install git
+   ```
+3. **Clone the Project Repository**:
+   ```sh
+   git clone <your-repo-url>
+   cd <project-folder>
+   ```
+4. **Set Up Virtual Environment**:
+   ```sh
+   sudo apt install python3.11-venv
+   python3 -m venv venv
+   source venv/bin/activate
+   ```
+5. **Install Required Libraries**:
+   ```sh
+   pip install -r requirements.txt
+   ```
+6. **Allow Port 5000 for Public Access**:
+   - Go to VM network settings.
+   - Add an inbound rule for TCP traffic on port `5000`.
 
----
-
-## 3. Environment Setup
-
-### 3.1 Verify Python Installation
-Debian includes Python by default. Verify using:
-```sh
-python3 --version
-```
-
-### 3.2 Install Git
-Install Git using the following command:
-```sh
-sudo apt install git -y
-```
-
-### 3.3 Clone the Project Repository
-```sh
-git clone <repository-url>
-cd <repository-directory>
-```
-
-### 3.4 Setup Python Virtual Environment
-Install `python3.11-venv` if not already available:
-```sh
-sudo apt install python3.11-venv -y
-```
-
-Create and activate a virtual environment:
-```sh
-python3 -m venv venv
-source ./venv/bin/activate
-```
-
-### 3.5 Install Required Dependencies
-```sh
-pip install -r requirements.txt
-```
-
-### 3.6 Configure Network for Public Access on Port 5000
-- Navigate to **VM Network Settings** in Azure Portal.
-- Open **Inbound Port Rules**.
-- Add a rule for **Port 5000** with **TCP Protocol**.
-
----
-
-## 4. Run the Application
-
-Execute the following command to start the application:
+### 4. Run the Application
 ```sh
 python3 app.py
 ```
+The application will be accessible at `http://<public-ip>:5000/`.
 
-The application should now be accessible via the configured public IP on port `5000`.
-
----
-
-## Notes
-- Ensure firewall settings allow external access if required.
-- Update dependencies periodically using:
-  ```sh
-  pip install --upgrade -r requirements.txt
-  ```
-- For security, consider using SSH key-based authentication instead of passwords.
+## Web Application Flow
+1. **Load the Pretrained Model (`.h5` file)**.
+2. **Preprocess Images**: Convert input images to the required format.
+3. **Model Prediction**: Process user-uploaded images and provide classification results.
+4. **Display Results**: Show predictions on the `Result.html` page.
